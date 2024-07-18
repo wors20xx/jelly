@@ -16,12 +16,17 @@ jobs:
           # echo 123 >> $GITHUB_PATH
 
           # Добавляет
-          echo "Folder PATH" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          echo $env:GITHUB_PATH
+          # echo "Folder PATH" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          # echo $env:GITHUB_PATH 
 
           # Но так не выводит
           # echo $GITHUB_PATH - видимо доступ только через $env:...
-          echo $env:GITHUB_WORKSPACE
+          # echo $env:GITHUB_WORKSPACE
+     
+          # Проверка
+          "$env:C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool" | Out-File -FilePath $env:GITHUB_PATH -Append
+          signtool
+
 
       # - name: Cache SDK
       #   id: cache-sdk
@@ -55,10 +60,12 @@ jobs:
           # $GITHUB_PATH
 
           # Проверка
-          echo 'C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool' | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          echo $env
-          echo '-----------------------------'
-          echo $env:GITHUB_PATH
+          "$env:C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool" | Out-File -FilePath $env:GITHUB_PATH -Append
+
+          # echo 'C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool' | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          # echo $env
+          # echo '-----------------------------'
+          # echo $env:GITHUB_PATH
           signtool
           
           
