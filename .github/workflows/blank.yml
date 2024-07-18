@@ -20,7 +20,7 @@ jobs:
           echo $env:GITHUB_PATH
 
           # Но так не выводит
-          # echo $GITHUB_PATH
+          # echo $GITHUB_PATH - видимо доступ только через $env:...
           echo $env:GITHUB_WORKSPACE
           
       - name: Install Windows SDK
@@ -48,9 +48,17 @@ jobs:
           # signtool
           # $Env:Path
           
-          # Работает
-          echo 'C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool' >> $GITHUB_PATH
-          $GITHUB_PATH
+          # Не работает
+          # echo 'C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool' >> $GITHUB_PATH
+          # $GITHUB_PATH
+
+          # Проверка
+          echo 'C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool' | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          echo $env
+          echo '-----------------------------'
+          echo $env:GITHUB_PATH
+          signtool
+          
           
       - name: Check signer next step
         run: |
