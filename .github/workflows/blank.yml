@@ -7,20 +7,24 @@ jobs:
   check-sign:
     runs-on: windows-latest
     steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        
       - name: Check to add github_path
         run: |
           echo 123 >> $GITHUB_PATH
           echo $GITHUB_PATH
           echo $GITHUB_WORKSPACE
-      - name: Check out Git repository
-        uses: actions/checkout@v4
+          
       - name: Install Windows SDK
         run: choco install windows-sdk-10.0
+        
       - name: Cache SDK
         uses: actions/cache@v2
         with:
           path: C:\Program Files (x86)\Microsoft SDKs
           key: SDK
+          
       - name: Check signer
         run: |
           # Работает
@@ -40,6 +44,7 @@ jobs:
           # Работает
           echo 'C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool' >> $GITHUB_PATH
           $GITHUB_PATH
+          
       - name: Check signer next step
         run: |
           signtool
