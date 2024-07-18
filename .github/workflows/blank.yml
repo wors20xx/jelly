@@ -22,15 +22,17 @@ jobs:
           # Но так не выводит
           # echo $GITHUB_PATH - видимо доступ только через $env:...
           echo $env:GITHUB_WORKSPACE
-          
-      - name: Install Windows SDK
-        run: choco install windows-sdk-10.0
-        
+
       - name: Cache SDK
+        id: cache-sdk
         uses: actions/cache@v2
         with:
           path: C:\Program Files (x86)\Microsoft SDKs
           key: SDK
+          
+      - name: Install Windows SDK
+        if: steps.cache-sdk.outputs.cache-hit != 'true'
+        run: choco install windows-sdk-10.0
           
       - name: Check signer
         run: |
