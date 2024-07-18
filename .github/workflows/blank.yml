@@ -12,9 +12,14 @@ jobs:
         
       - name: Check to add github_path
         run: |
-          echo 123 >> $GITHUB_PATH
+          # Не добавляет
+          # echo 123 >> $GITHUB_PATH
+
+          echo "Folder PATH" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           echo $GITHUB_PATH
           echo $GITHUB_WORKSPACE
+          echo 1
+          echo $env:GITHUB_PATH
           
       - name: Install Windows SDK
         run: choco install windows-sdk-10.0
@@ -47,7 +52,8 @@ jobs:
           
       - name: Check signer next step
         run: |
-          signtool
+          # Не  работает
+          # signtool
           
 
 
