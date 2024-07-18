@@ -10,7 +10,7 @@ jobs:
       - name: Check to add github_path
         run: |
           echo 123 >> $GITHUB_PATH
-          $GITHUB_PATH
+          echo $GITHUB_PATH
       - name: Check out Git repository
         uses: actions/checkout@v4
       - name: Install Windows SDK
