@@ -24,7 +24,9 @@ jobs:
           # echo $env:GITHUB_WORKSPACE
      
           # Проверка
-          "$env:C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool" | Out-File -FilePath $env:GITHUB_PATH -Append
+          $env
+          $env:HOMEPATH
+          "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool" | Out-File -FilePath $env:GITHUB_PATH -Append
           signtool
 
 
