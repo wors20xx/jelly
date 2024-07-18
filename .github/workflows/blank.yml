@@ -15,4 +15,5 @@ jobs:
         run: |
           & "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe"
           cd "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool"
-          ./signtool.exe
+          ls
+          .\signtool.exe
