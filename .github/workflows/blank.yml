@@ -13,14 +13,16 @@ jobs:
         run: choco install windows-sdk-10.0
       - name: Check signer
         run: |
-          // Работает
-          // & "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe"         
-          // Работает
-          // cd "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool"
-          // ls
-          // .\signtool.exe
-          // Проверка
+          # Работает
+          # & "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe"         
+          # Работает
+          # cd "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool"
+          # ls
+          # .\signtool.exe
+          # Проверка
           $Env:Path
           $Env:Path += ';C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool'
           signtool
+          # Проверка
+          echo 'C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool' >> $GITHUB_PATH
           
