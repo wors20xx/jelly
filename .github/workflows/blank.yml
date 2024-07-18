@@ -11,6 +11,7 @@ jobs:
         run: |
           echo 123 >> $GITHUB_PATH
           echo $GITHUB_PATH
+          echo $GITHUB_WORKSPACE
       - name: Check out Git repository
         uses: actions/checkout@v4
       - name: Install Windows SDK
