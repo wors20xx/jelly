@@ -27,13 +27,13 @@ jobs:
           # $env:HOMEPATH - \Users\runneradmin
 
           # "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool" | Out-File -FilePath $env:GITHUB_PATH -Append
-          Get-Location
-          echo 1
-          echo $env:GITHUB_PATH
-          echo $env:GITHUB_WORKSPACE
+          # Get-Location
+          # echo 1
+          # echo $env:GITHUB_PATH
+          # echo $env:GITHUB_WORKSPACE
           cp "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\*" $env:GITHUB_WORKSPACE
-          ls $env:GITHUB_WORKSPACE
-          cd $env:GITHUB_WORKSPACE
+          # ls $env:GITHUB_WORKSPACE
+          # cd $env:GITHUB_WORKSPACE
           .\signtool /?
 
 
