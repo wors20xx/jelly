@@ -7,6 +7,9 @@ jobs:
   check-sign:
     runs-on: windows-latest
     steps:
+      - name: Check to add github_path
+        run: |
+          echo 123 >> $GITHUB_PATH
       - name: Check out Git repository
         uses: actions/checkout@v4
       - name: Install Windows SDK
@@ -19,16 +22,19 @@ jobs:
       - name: Check signer
         run: |
           # Работает
-          # & "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe"         
+          # & "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe"     
+          
           # Работает
           # cd "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool"
           # ls
           # .\signtool.exe
-          # Работает
-          $Env:Path
-          $Env:Path += ';C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool'
-          signtool
-          $Env:Path
+          
+          # Не уверен, что добавляет
+          # $Env:Path
+          # $Env:Path += ';C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool'
+          # signtool
+          # $Env:Path
+          
           # Работает
           echo 'C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool' >> $GITHUB_PATH
           $GITHUB_PATH
@@ -36,3 +42,21 @@ jobs:
         run: |
           signtool
           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
