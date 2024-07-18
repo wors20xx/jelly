@@ -1,0 +1,13 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check-sign:
+    runs-on: windows-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+      - name: Install Windows SDK
+        run: choco install windows-sdk-10.0
