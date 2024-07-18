@@ -32,7 +32,7 @@ jobs:
           cp "C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\*" $env:GITHUB_WORKSPACE
           ls $env:GITHUB_WORKSPACE
           cd $env:GITHUB_WORKSPACE
-          signtool
+          signtool.exe -h
 
 
       # - name: Cache SDK
