@@ -9,8 +9,71 @@ jobs:
     steps:
       - name: Check out Git repository
         run: |
-          codesign -h
+          curl -L -o octopi-uploader-1.0.32-arm64.dmg https://storage.googleapis.com/octopipoker-dev-uploader/octopi-uploader/darwin/arm64/octopi-uploader-1.0.32-arm64.dmg
+
+      - name: Verify DMG signature
+        run: |
+          #!/bin/bash
   
+          # Function to handle errors
+          handle_error() {
+              echo "Error on line $1, exiting with status $2"
+              exit "$2
+          }
+  
+          # Setup error trapping
+          trap 'handle_error $LINENO $?' ERR
+          
+          FILE_PATH="octopi-uploader-1.0.32-arm64.dmg"
+  
+          log_info() {
+              echo "[INFO] $1"
+          }
+  
+          log_error() {
+              echo "[ERROR] $1"
+          }
+  
+          # Check if file exists
+          if [[ -f "$FILE_PATH" ]]; then
+              log_info "File exists: $FILE_PATH"
+          else
+              log_error "File not found: $FILE_PATH"
+              exit 1
+          fi
+  
+          # Check if codesign command exists
+          if ! command -v codesign &> /dev/null; then
+              log_error "codesign not installed or not in path"
+              exit 1
+          fi
+  
+          # Perform basic verification
+          log_info "Performing basic verification:"
+          codesign -v "$FILE_PATH"
+  
+          # Perform verbose verification
+          log_info "Performing verbose verification:"
+          codesign -v --verbose "$FILE_PATH"
+  
+          # Perform detailed verbose verification
+          log_info "Performing very detailed verbose verification:"
+          codesign -v --verbose=4 "$FILE_PATH"
+  
+          # Verify signature against specific requirements
+          log_info "Verifying signature against specific requirements:"
+          codesign -v --requirement="anchor apple" "$FILE_PATH"
+  
+          # Display signature information with verbose output
+          log_info "Displaying signature information with verbose output:"
+          codesign -v --display --verbose "$FILE_PATH"
+  
+          # Deep verification
+          log_info "Performing deep verification:"
+          codesign -v --deep "$FILE_PATH"
+  
+          log_info "All checks completed successfully."
+    
   # check-sign:
   #   runs-on: windows-latest
   #   steps:
