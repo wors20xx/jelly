@@ -14,7 +14,7 @@ jobs:
       - name: Verify DMG signature
         run: |
           #!/bin/bash
-          FILE_PATH="octopi-uploader-1.0.32-arm64.dmg"
+          FILE_PATH="octopi-uploader-1.0.32-arm64.dmg/octopi-uploader.app"
           codesign -v --verbose=4 "$FILE_PATH"
           
     
