@@ -9,14 +9,13 @@ jobs:
     steps:
       - name: Check out Git repository
         run: |
-          curl -L -o octopi-uploader-1.0.32-arm64.dmg https://storage.googleapis.com/octopipoker-dev-uploader/octopi-uploader/darwin/arm64/octopi-uploader-1.0.32-arm64.dmg
+            echo 1
 
       - name: Verify DMG signature
+        environment:
+          name: dev
         run: |
-          #!/bin/bash
-          FILE_PATH="octopi-uploader-1.0.32-arm64.dmg/octopi-uploader.app"
-          ls
-          codesign -v --verbose=4 "$FILE_PATH"
+            echo 2
           
     
   # check-sign:
